@@ -26,7 +26,7 @@ window = tk.Tk()
 window.title("Fake Data Generator")
 
 # Set the window size (width x height)
-window.geometry("400x400")
+window.geometry("400x520")
 
 # Create a label and an entry widget for the user to enter the number of records
 label_records = Label(window, text="Enter the number of records:")

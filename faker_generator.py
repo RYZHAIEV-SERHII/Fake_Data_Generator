@@ -11,8 +11,16 @@ data_types = {
     'name': fake.name,
     'birthdate': fake.date,
     'address': fake.address,
+    'phone': fake.phone_number,
     'email': fake.email,
-    'phone': fake.phone_number
+    'url': fake.url,
+    'country': fake.country,
+    'profile': fake.profile,
+    'job': fake.job,
+    'time': fake.time,
+    'year': fake.year,
+    'text': fake.text,
+    'sentence': fake.sentence
 }
 
 
