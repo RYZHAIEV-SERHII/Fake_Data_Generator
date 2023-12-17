@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Label, Button, Entry, IntVar, Checkbutton, messagebox
+from tkinter import Label, Button, Entry, IntVar, Checkbutton, StringVar, OptionMenu, messagebox
 
 from faker_generator import generate_data, data_types
 
@@ -11,10 +11,9 @@ def generate_fake_data():
         if not selected_data_types:
             messagebox.showerror("Error", "Please select at least one data type.")
             return
-
-        generate_data(records, selected_data_types)
+        selected_locale = locale_var.get()
+        generate_data(records, selected_data_types, selected_locale)
         messagebox.showinfo("Success", f"Fake data generated successfully! Data saved in: fake_data.json")
-
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
 
@@ -26,7 +25,7 @@ window = tk.Tk()
 window.title("Fake Data Generator")
 
 # Set the window size (width x height)
-window.geometry("400x400")
+window.geometry("400x600")
 
 # Create a label and an entry widget for the user to enter the number of records
 label_records = Label(window, text="Enter the number of records:")
@@ -43,6 +42,14 @@ for data_type in data_types:
     data_type_vars[data_type] = IntVar()
     checkbox = Checkbutton(window, text=data_type, variable=data_type_vars[data_type])
     checkbox.pack(anchor="w")
+
+# Create a dropdown menu for choosing localization
+locale_var = StringVar(window)
+locale_var.set("en_US")  # Set a default value
+locales = ["en_US", "uk_UA", "fr_FR", "de_DE", "es_ES"]  # Add more as needed
+locale_menu = OptionMenu(window, locale_var, *locales)
+Label(window, text="Choose Localization:").pack(pady=10)
+locale_menu.pack()
 
 # Create a button to exit the program
 exit_button = Button(window, text="Exit", height=2, width=10, command=window.destroy)
